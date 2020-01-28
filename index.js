@@ -43,7 +43,7 @@ Sign the Transaction
 ##########################*/
 
 // -- Step 7: Sign the transaction with the Hex value of the private key of the sender 
-var privateKeySender = '01d32aa50f47356dc7a0f46abeaf1ddae6b5a474ef62467f74311a69ebcf2e62' 
+var privateKeySender = 'private key' 
 var privateKeySenderHex = new Buffer(privateKeySender, 'hex') 
 var transaction = new EthereumTransaction(rawTransaction) 
 transaction.sign(privateKeySenderHex)
