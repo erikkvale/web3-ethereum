@@ -7,13 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Deploy a Remix Contract</title>
 
+    <link rel="stylesheet" type="text/css" href="main.css">
+
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 </head>
 
 <body>
     <div>
-        <h1>Deploy a Remix Contract</h1>
+        <h1>Ethereum Secret Messenger</h1>
+        <hr>
+
+        <label for="message">This site writes a secret message to the Ethereum
+            blockchain!</label>
+        <input id="userInput" type="text">
+
+        <button id="setMessageButton">Set secret message</button>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
     <script>
 
@@ -28,40 +39,17 @@
         web3.eth.defaultAccount = web3.eth.accounts[0];
 
         // Get the contract address
-        var RemixContract = new web3.eth.Contract(
-            [
-                {
-                    "constant": false,
-                    "inputs": [
-                        {
-                            "name": "x",
-                            "type": "string"
-                        }
-                    ],
-                    "name": "setMessage",
-                    "outputs": [],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                },
-                {
-                    "constant": true,
-                    "inputs": [],
-                    "name": "getMessage",
-                    "outputs": [
-                        {
-                            "name": "",
-                            "type": "string"
-                        }
-                    ],
-                    "payable": false,
-                    "stateMutability": "view",
-                    "type": "function"
-                }
-            ],
-        );
+        var RemixContract = web3.eth.contract(CONTRACT-ABI-HERE);
 
-        console.log(RemixContract);
+        // Get the contract abi
+        var myMessage = RemixContract.at('CONTRACT ADDRESS HERE');
+
+        console.log(myMessage);
+
+        $("#setMessageButton").click(function () {
+            myMessage.setMessage($("#userInput").val());
+            console.log($("#userInput").val())
+        });
 
     </script>
 </body>
